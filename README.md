@@ -100,8 +100,8 @@ eksctl version
 Execute the below commands as separate set
 (a)
 eksctl create cluster --name=sln-eks \
-                      --region=us-east-1 \
-                      --zones=us-east-1a,us-east-1b \
+                      --region=ap-south-1 \
+                      --zones=ap-south-1a,ap-south-1b \
                       --version=1.30 \
                       --without-nodegroup
 
@@ -110,7 +110,7 @@ Goto EKS Console and verify the cluster.
 
 (b)
 eksctl utils associate-iam-oidc-provider \
-    --region us-east-1 \
+    --region ap-south-1 \
     --cluster sln-eks \
     --approve
 
@@ -124,7 +124,7 @@ Without this, these services will not be able to access AWS resources securely.
 Before executing the below command, in the 'ssh-public-key' keep the  '<PEM FILE NAME>' (dont give .pem. Just give the pem file name) which was used to create Jenkins Server
 
 eksctl create nodegroup --cluster=sln-eks \
-                       --region=us-east-1 \
+                       --region=ap-south-1a \
                        --name=node2 \
                        --node-type=t3.medium \
                        --nodes=3 \
@@ -433,7 +433,7 @@ sudo systemctl restart jenkins
 
 Switch to Jenkins user
 sudo -su jenkins
-aws eks update-kubeconfig --name kastro-eks --region us-east-1
+aws eks update-kubeconfig --name sln-eks --region ap-south-1
 
 
 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
